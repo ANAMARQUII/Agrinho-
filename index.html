@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conexão Campo-Cidade</title>
+    <style>
+        :root {
+            --verde-campo: #4a7c59;
+            --cinza-cidade: #6c757d;
+            --bege-claro: #f8f9fa;
+            --marrom-terra: #8b5a2b;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--verde-campo), var(--cinza-cidade));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+        
+        nav {
+            background-color: var(--marrom-terra);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--bege-claro);
+        }
+        
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1497440001377-5333b138c1a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--verde-campo);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3a6045;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--verde-campo);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--verde-campo);
+            margin-bottom: 1rem;
+        }
+        
+        .dual-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .dual-content img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonials {
+            background-color: var(--bege-claro);
+            padding: 4rem 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--verde-campo);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            color: var(--bege-claro);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+        }
+        
+        @media (max-width: 768px) {
+            .dual-content {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-tractor"></i>
+                <i class="fas fa-arrow-right"></i>
+                <i class="fas fa-city"></i>
+            </div>
+            <h1>Conexão Campo-Cidade</h1>
+        </div>
+        <p>Unindo a produção rural ao consumo urbano de forma sustentável</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#produtos">Produtos</a></li>
+        </ul>
+    </nav>
+    
+    
+    <section class="container" id="sobre">
+        <h2 class="section-title">Nossa Missão</h2>
+        <div class="dual-content">
+            <div>
+                <h3>Do campo para a cidade</h3>
+                <p>Nosso objetivo é criar uma conexão direta entre os produtores rurais e os consumidores urbanos, eliminando intermediários e garantindo preços justos para ambos os lados.</p>
+                <p>Acreditamos que essa relação mais próxima beneficia a todos: os agricultores recebem melhor por seu trabalho, os consumidores têm acesso a alimentos mais frescos e saudáveis, e o meio ambiente agradece pela redução no transporte e desperdício.</p>
+            </div>
+            <img src="Imgs/cf7e4040c23415d9852d7bd6a07257d4.jpeg">
+        </div>
+        
+        <div class="dual-content">
+            <img src="Imgs/Feira-Kennedy.jpeg">
+            <div>
+                <h3>Sustentabilidade e tecnologia</h3>
+                <p>Utilizamos tecnologia para aproximar esses dois mundos, com plataformas digitais que conectam produtores e consumidores, sistemas de logística eficientes e técnicas agrícolas sustentáveis.</p>
+                <p>Promovemos a agricultura regenerativa, o comércio justo e o consumo consciente como pilares para um futuro mais equilibrado entre o urbano e o rural.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container" id="projetos">
+        <h2 class="section-title">Nossos Projetos</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>Logística Eficiente</h3>
+                <p>Sistema de distribuição que reduz o tempo entre a colheita e a mesa do consumidor, mantendo a qualidade dos produtos.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Plataforma Digital</h3>
+                <p>Aplicativo que conecta diretamente produtores e consumidores, com informações sobre origem, produção e valores.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Educação Alimentar</h3>
+                <p>Programas em escolas e comunidades urbanas sobre a importância da agricultura familiar e alimentação saudável.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3>Agricultura Sustentável</h3>
+                <p>Capacitação de pequenos produtores em técnicas agroecológicas que preservam o meio ambiente.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <h3>Comércio Justo</h3>
+                <p>Modelo de negócios que garante remuneração adequada aos produtores e preços acessíveis aos consumidores.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Comunidades Fortalecidas</h3>
+                <p>Projetos que integram pequenos agricultores em redes de apoio mútuo e comercialização coletiva.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials" id="produtos">
+        <div class="container">
+            <h2 class="section-title">Quem Consome Aprova</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Desde que comecei a comprar diretamente dos produtores, minha alimentação mudou completamente. Os alimentos são mais frescos, saborosos e eu sei exatamente de onde vêm."</p>
+                    <p class="testimonial-author">- Ana Clara, nutricionista</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Participar desse projeto transformou minha vida. Agora recebo um preço justo pelo meu trabalho e consigo planejar melhor minha produção sabendo que terem compradores certos."</p>
+                    <p class="testimonial-author">- Seu João, agricultor familiar</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Como chef de cozinha, valorizo extremamente a qualidade dos ingredientes. Essa conexão direta com os produtores me permite oferecer pratos com sabores autênticos e histórias para contar."</p>
+                    <p class="testimonial-author">- Carlos Eduardo, chef</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container">
+</html>
